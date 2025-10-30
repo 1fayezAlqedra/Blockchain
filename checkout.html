@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Complete Your Purchase</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/checkout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <a href="products.html" class="logo">ModaShop</a>
+            <ul class="nav-links">
+                <li><a href="products.html">Continue Shopping</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="checkout-main">
+        <h1>Checkout</h1>
+        <div class="checkout-layout">
+            
+            <div class="shipping-info">
+                <h2>1. Shipping Details</h2>
+                <form id="shippingForm">
+                    <div class="form-group">
+                        <label for="address">Full Address</label>
+                        <input type="text" id="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">Zip/Postal Code</label>
+                        <input type="text" id="zip" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                </form>
+
+
+
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-item">
+                    <span>Product A (x1)</span>
+                    <span>120.00 Block</span>
+                </div>
+                 <div class="summary-item">
+                    <span>Product B (x1)</span>
+                    <span>85.00 Block</span>
+                </div>
+                <hr>
+                <div class="summary-item">
+                    <strong>Subtotal</strong>
+                    <strong>205.00 Block</strong>
+                </div>
+                 <div class="summary-item">
+                    <span>Shipping</span>
+                    <span>10.00 Block</span>
+                </div>
+                <hr>
+                <div class="summary-item total">
+                    <strong>Total Amount</strong>
+                    <strong>215.00Block</strong>
+                </div>
+                <button type="submit" class="cta-button" form="shippingForm">Place Order (215.00 Block)</button>
+
+            </div>
+                            <div id="paymentContainer" style="background:#fff; padding:20px; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.1); max-width:500px; margin:20px auto; font-family:Arial, sans-serif;">
+    <h2 style="color:#1e3a8a; text-align:center; margin-bottom:20px;"> الدفع عبر البلوك تشين</h2>
+    <button id="connectBtn" style="width:100%; padding:12px; margin-bottom:10px; border:none; border-radius:8px; font-size:16px; background:#2563eb; color:white; cursor:pointer;"onclick="connectWallet()">🔗 Connect Wallet</button>
+        </div>
+    </main>
+    
+
+    <footer class="main-footer">
+        <p>&copy; 2025 ModaShop. Secure Checkout.</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/checkout-logic.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.11.1/dist/ethers.umd.min.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

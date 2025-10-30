@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Name - Details</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/detail.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <a href="products.html" class="logo">ModaShop</a>
+            <ul class="nav-links">
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="checkout.html">🛒 Cart (2)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="detail-main">
+        <div class="product-detail-container">
+            <div class="image-gallery">
+                <img src="assets/images/product-1.jpg" alt="Product Image" id="mainProductImage">
+                <div class="thumbnails">
+                    <img src="assets/images/product-1-thumb1.jpg" alt="Thumbnail 1">
+                    <img src="assets/images/product-1-thumb2.jpg" alt="Thumbnail 2">
+                </div>
+            </div>
+            <div class="product-info">
+                <h1 id="productTitle">Luxury Leather Bag</h1>
+                <p class="product-category">Category: Accessories</p>
+                <p class="product-price" id="productPrice">120.00 Block</p>
+                
+                <div class="product-description">
+                    <h3>Description</h3>
+                    <p>Experience elegance with our Luxury Leather Bag. Crafted from genuine Italian leather, this bag offers ample space, durable construction, and a timeless design perfect for daily use or travel.</p>
+                </div>
+
+                <div class="product-options">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" value="1" min="1" max="10">
+                    
+                    <label for="color">Color:</label>
+                    <select id="color">
+                        <option value="brown">Brown</option>
+                        <option value="black">Black</option>
+                        <option value="red">Red</option>
+                    </select>
+                </div>
+
+                <button class="cta-button add-to-cart-btn">Add to Cart</button>
+                <button class="cta-button add-to-cart-btn" style="margin-top: 15px;" onclick="connectWallet()">🔗 Connect Wallet</button>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 ModaShop. Premium E-commerce Template.</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/product-logic.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.11.1/dist/ethers.umd.min.js"></script>
+
+    
+
+</body>
+</html>

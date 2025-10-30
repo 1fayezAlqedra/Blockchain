@@ -1,0 +1,76 @@
+<div id="checkoutContainer" style="max-width:500px; margin:20px auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.1); font-family:Arial,sans-serif;">
+    <h2 style="text-align:center; color:#1e3a8a;">🛒 Checkout البلوك تشين</h2>
+
+    <!-- ملخص المنتج -->
+    <div style="margin:20px 0; border-bottom:1px solid #e5e7eb; padding-bottom:10px;">
+        <h3 id="productName" style="margin:0; color:#1e3a8a;">منتج تجريبي</h3>
+        <p id="productPrice" style="margin:5px 0 0 0; font-weight:bold; color:#374151;">💰 السعر: 0.01 ETH</p>
+    </div>
+
+    <!-- زر الاتصال -->
+    <button id="connectBtn" style="width:100%; padding:12px; border:none; border-radius:8px; font-size:16px; background:#2563eb; color:white; cursor:pointer;">🔗 Connect Wallet</button>
+
+    <!-- زر الدفع -->
+    <button id="payBtn" style="width:100%; padding:12px; border:none; border-radius:8px; font-size:16px; background:#10b981; color:white; cursor:pointer; display:none; margin-top:10px;">🛒 دفع عبر البلوك تشين</button>
+
+    <!-- حالة الدفع -->
+    <div id="statusMessage" style="text-align:center; margin-top:15px; font-weight:bold; color:#064e3b;"></div>
+</div>
+
+<!-- مكتبة Ethers.js -->
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.11.1/dist/ethers.umd.min.js"></script>
+
+<script>
+const contractAddress = "YOUR_CONTRACT_ADDRESS_HERE"; // ضع هنا عنوان العقد
+const contractABI = [ /* ضع هنا ABI كامل */ ];
+
+let provider, signer, contract;
+let productId = 1;                  // رقم المنتج
+let productPrice = ethers.parseEther("0.01"); // سعر المنتج بالـ ETH
+
+const connectBtn = document.getElementById("connectBtn");
+const payBtn = document.getElementById("payBtn");
+const statusMessage = document.getElementById("statusMessage");
+
+// 🔹 الاتصال بالمحفظة
+connectBtn.addEventListener("click", async () => {
+    if (!window.ethereum) {
+        alert("⚠️ الرجاء تثبيت MetaMask أولًا!");
+        return;
+    }
+
+    try {
+        provider = new ethers.BrowserProvider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        signer = await provider.getSigner();
+        contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+        const address = await signer.getAddress();
+        statusMessage.textContent = `🟢 متصل بالمحفظة: ${address}`;
+
+        connectBtn.style.display = "none";
+        payBtn.style.display = "block";
+    } catch (err) {
+        console.error(err);
+        statusMessage.textContent = `❌ خطأ أثناء الاتصال: ${err.message}`;
+    }
+});
+
+// 🔹 الدفع عبر البلوك تشين
+payBtn.addEventListener("click", async () => {
+    if (!contract) {
+        alert("⚠️ لم يتم الاتصال بالعقد!");
+        return;
+    }
+
+    try {
+        statusMessage.textContent = "⏳ جاري معالجة الدفع...";
+        const tx = await contract.buyProduct(productId, { value: productPrice });
+        await tx.wait();
+        statusMessage.textContent = "✅ تمت عملية الدفع بنجاح!";
+    } catch (err) {
+        console.error(err);
+        statusMessage.textContent = `❌ خطأ أثناء الدفع: ${err.message}`;
+    }
+});
+</script>
